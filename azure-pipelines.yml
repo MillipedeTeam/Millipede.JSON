@@ -1,6 +1,8 @@
 trigger:
 - master
 - develop
+- releases/*
+- feature/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -9,8 +11,6 @@ steps:
 - task: DotNetCoreInstaller@0
   inputs:
     version: '2.2.300'
-
-- script: dotnet restore
 
 - task: DotNetCoreCLI@2
   displayName: Build
@@ -24,3 +24,4 @@ steps:
     command: test
     projects: '**/*.Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+
